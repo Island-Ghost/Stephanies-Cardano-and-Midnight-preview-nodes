@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  cardano-node:
+    build: .
+    container_name: stephanies-cardano-node
+    restart: unless-stopped
+    ports:
+      - "3001:3001"    # Cardano node P2P port
+      - "12798:12798"  # Prometheus metrics
+    volumes:
+      - ./data:/opt/cardano/data
+      - ./logs:/opt/cardano/logs
+    environment:
+      - CARDANO_NETWORK=preview
+      - CARDANO_NODE_SOCKET_PATH=/opt/cardano/data/node.socket
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:12798/metrics"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    networks:
+      - cardano-network
+
+networks:
+  cardano-network:
+    driver: bridge
+
+volumes:
+  cardano-data:
+    driver: local

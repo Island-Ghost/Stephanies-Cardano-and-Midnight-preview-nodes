@@ -1,0 +1,15 @@
+{
+  "name": "stephanies-preview-node",
+  "version": "1.0.0",
+  "description": "A Cardano preview testnet node setup using Docker for development and testing purposes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@midnight-ntwrk/ledger": "^4.0.0"
+  }
+}

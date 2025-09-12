@@ -1,0 +1,148 @@
+{
+  "AlonzoGenesisFile": "alonzo-genesis.json",
+  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa04bd80b016e65a1b5b0d1904f7d9c8d8b3d3e5",
+  "ByronGenesisFile": "byron-genesis.json",
+  "ByronGenesisHash": "268ae601af8f9214804735910a3301881fbe0eec9936db7d1fb9fc39e93d1e3c",
+  "ConwayGenesisFile": "conway-genesis.json",
+  "ConwayGenesisHash": "f28f1c1280ea0d32f8cd3143e268650d6c1a8e221522ce4a7d20d62fc09783e1",
+  "EnableLogMetrics": false,
+  "EnableLogging": true,
+  "LastKnownBlockVersion-Alt": 0,
+  "LastKnownBlockVersion-Major": 3,
+  "LastKnownBlockVersion-Minor": 0,
+  "MaxKnownMajorProtocolVersion": 2,
+  "Protocol": "Cardano",
+  "RequiresNetworkMagic": "RequiresMagic",
+  "ShelleyGenesisFile": "shelley-genesis.json",
+  "ShelleyGenesisHash": "849a1764f152e1b09c89c0dfdbcbdd38d711d1fec2db5dfa0f87cf2737a0eaf4",
+  "TraceAcceptPolicy": true,
+  "TraceBlockFetchClient": false,
+  "TraceBlockFetchDecisions": false,
+  "TraceBlockFetchProtocol": false,
+  "TraceBlockFetchProtocolSerialised": false,
+  "TraceBlockFetchServer": false,
+  "TraceChainDb": true,
+  "TraceChainSyncBlockServer": false,
+  "TraceChainSyncClient": false,
+  "TraceChainSyncHeaderServer": false,
+  "TraceChainSyncProtocol": false,
+  "TraceDNSResolver": true,
+  "TraceDNSSubscription": true,
+  "TraceDiffusionInitialization": true,
+  "TraceErrorPolicy": true,
+  "TraceForge": true,
+  "TraceHandshake": false,
+  "TraceIpSubscription": true,
+  "TraceLedgerPeers": true,
+  "TraceLocalChainSyncProtocol": false,
+  "TraceLocalErrorPolicy": true,
+  "TraceLocalHandshake": false,
+  "TraceLocalTxSubmissionProtocol": false,
+  "TraceLocalTxSubmissionServer": false,
+  "TraceMempool": true,
+  "TraceMux": false,
+  "TracePeerSelection": true,
+  "TracePeerSelectionActions": true,
+  "TracePublicRootPeers": true,
+  "TraceServer": true,
+  "TurnOnLogMetrics": false,
+  "TurnOnLogging": true,
+  "defaultBackends": [
+    "KatipBK"
+  ],
+  "defaultScribes": [
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+  "hasEKG": 12788,
+  "hasPrometheus": [
+    "127.0.0.1",
+    12798
+  ],
+  "minSeverity": "Info",
+  "options": {
+    "mapBackends": {
+      "cardano.node.metrics": [
+        "EKGViewBK"
+      ],
+      "cardano.node.resources": [
+        "EKGViewBK"
+      ]
+    },
+    "mapSubtrace": {
+      "#ekgview": {
+        "contents": [
+          [
+            {
+              "contents": "cardano.epoch-validation.benchmark",
+              "tag": "Contains"
+            },
+            [
+              {
+                "contents": ".monoclock.basic.",
+                "tag": "Contains"
+              }
+            ]
+          ],
+          [
+            {
+              "contents": "cardano.epoch-validation.benchmark",
+              "tag": "Contains"
+            },
+            [
+              {
+                "contents": "diff.RTS.cpuNs.timed.",
+                "tag": "Contains"
+              }
+            ]
+          ],
+          [
+            {
+              "contents": "#ekgview.#aggregation.cardano.epoch-validation.benchmark",
+              "tag": "StartsWith"
+            },
+            [
+              {
+                "contents": "diff.RTS.gcNum.timed.",
+                "tag": "Contains"
+              }
+            ]
+          ]
+        ],
+        "subtrace": "FilterTrace"
+      },
+      "benchmark": {
+        "contents": [
+          "GhcRtsStats",
+          "MonoClock"
+        ],
+        "subtrace": "ObservableTrace"
+      },
+      "cardano.epoch-validation.utxo-stats": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.metrics": {
+        "subtrace": "Neutral"
+      }
+    }
+  },
+  "rotation": {
+    "rpKeepFilesNum": 10,
+    "rpLogLimitBytes": 5000000,
+    "rpMaxAgeHours": 24
+  },
+  "setupBackends": [
+    "AggregationBK",
+    "KatipBK"
+  ],
+  "setupScribes": [
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+}
