@@ -1,42 +1,46 @@
-# Stephanie's Preview Node
+# Stephanie's Midnight Validator Node - Preview Mode
 
-A Cardano preview testnet node setup using Docker for development and testing purposes.
+A complete Midnight network validator node setup integrated with Cardano Preview testnet using Docker.
 
 ## Overview
 
-This project sets up a Cardano node connected to the preview testnet, which is perfect for:
-- Testing Cardano applications
-- Learning Cardano development
-- Running smart contracts in a test environment
+This project sets up a full Midnight validator infrastructure including:
+- Cardano Preview testnet node
+- Midnight validator node (testnet-02)
+- PostgreSQL database with Cardano DB Sync
+- Cardano Ogmios WebSocket API
+- Midnight Proof Server
+- Complete monitoring and management tools
 
 ## Quick Start
 
-1. Build and run the Cardano preview node:
+1. Navigate to the midnight-node-docker directory:
+   ```bash
+   cd midnight-node-docker
+   ```
+
+2. Start all services:
    ```bash
    docker-compose up -d
    ```
 
-2. Check node status:
+3. Monitor services:
    ```bash
-   docker-compose logs -f cardano-node
+   ./monitor-logs.sh
    ```
 
-3. Query the node:
-   ```bash
-   docker exec -it cardano-node cardano-cli query tip --testnet-magic 2
-   ```
+## Services & Ports
 
-## Components
+- **Cardano Node**: Port 3001 (Preview testnet)
+- **PostgreSQL**: Port 5432 (cexplorer database)
+- **Cardano Ogmios**: Port 1337 (WebSocket API)
+- **Midnight Node**: Ports 9944 (RPC), 9615 (metrics), 30333 (P2P)
+- **Proof Server**: Port 6300
 
-- **Cardano Node**: The main blockchain node
-- **Configuration**: Preview testnet configuration files
-- **Monitoring**: Health checks and logging
+## Validator Configuration
 
-## Ports
+The setup includes validator keys and configuration for Midnight testnet-02 participation. See `midnight-node-docker/validator-info.txt` for complete validator details.
 
-- `3001`: Cardano node P2P port
-- `12798`: Prometheus metrics endpoint
+## Monitoring
 
-## Data Persistence
-
-Node data is persisted in the `./data` directory to maintain blockchain state between container restarts.
+Use the provided monitoring script to view real-time logs and health status of all services.
